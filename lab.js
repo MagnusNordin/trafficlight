@@ -5,9 +5,11 @@ var mainLight = {red:11,yellow:12,green:15};
 var secondLight = {red: 16, green: 18};
 
 function switchLight(light, onoff) {
-	gpio.open(light, "output", function(err) {
-		gpio.write(light, onoff, function() {
-			gpio.close(light);
+	process.nextTick( function() {
+		gpio.open(light, "output", function(err) {
+			gpio.write(light, onoff, function() {
+				gpio.close(light);
+			});
 		});
 	});
 }
